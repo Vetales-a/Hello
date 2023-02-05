@@ -14,9 +14,11 @@ import android.widget.Toast;
 public class Calculator extends AppCompatActivity {
 
     private static final String LogcatTag = "Calculator_Activity";
+    private static final String LifecycleTag = "LIFECYCLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LifecycleTag, "I'm on created, and i'm started");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
@@ -29,6 +31,36 @@ public class Calculator extends AppCompatActivity {
                 calculateAnswer();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(LifecycleTag, "I'm onStart(), and i'm started");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(LifecycleTag, "I'm onStart(), and i'm started");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(LifecycleTag, "I'm onDestroy(), and i'm started");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(LifecycleTag, "I'm onPause(), and i'm started");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(LifecycleTag, "I'm onResume(), and i'm started");
     }
 
     private void calculateAnswer() {
@@ -44,11 +76,18 @@ public class Calculator extends AppCompatActivity {
 
         Log.d(LogcatTag, "ALL view have been founded");
 
-        float numone = Integer.parseInt(numOne.getText().toString());
-        float numtwo = Integer.parseInt(numTwo.getText().toString());
-
+        float numone = 0;
+        float numtwo = 0;
+        String num1 = numOne.getText().toString();
+        String num2 = numOne.getText().toString();
+        if (num1.contentEquals("") && num1 != null) {
+            numone = Integer.parseInt(numOne.getText().toString());
+        }
+        if (num1.contentEquals("") && num2!= null) {
+            numtwo = Integer.parseInt(numTwo.getText().toString());
+        }
         Log.d(LogcatTag, "Successfully grabbed data from input fields");
-        Log.d(LogcatTag, "numone is:" + numone + " ; " + " numtwo is:" + numtwo );
+        Log.d(LogcatTag, "numone is:" + numone + " ; " + " numtwo is:" + numtwo);
 
         float solution = 0;
 
@@ -77,7 +116,7 @@ public class Calculator extends AppCompatActivity {
             }
             solution = numone / numtwo;
         }
-        Log.d(LogcatTag,"the result of operation is: " + solution);
+        Log.d(LogcatTag, "the result of operation is: " + solution);
 
         //Log.wtf() // What a Terrible Failure == error
 
