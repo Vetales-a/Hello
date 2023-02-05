@@ -2,14 +2,20 @@ package ru.synergy.androidstartproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.RadioButton;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class Calculator extends AppCompatActivity {
 
@@ -23,6 +29,19 @@ public class Calculator extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         final Button calculate = (Button) findViewById(R.id.calc);
+
+//        // Context training
+//        TextView textView = new TextView(this );
+//        ListAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),);
+//        //  Доступ из класса Activity -- наследник ConText
+//        getSystemService(LAYOUT_INFLATER_SERVICE);
+//
+//        // Shared prefs доступ с тспользованием контекста приложения.
+//        SharedPreferences prefs = getApplicationContext().getSharedPreferences("OREFS",MODE_PRIVATE);
+//
+
+
+
 
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,5 +141,6 @@ public class Calculator extends AppCompatActivity {
 
 
         answer.setText("The answer is" + solution);
+
     }
 }
