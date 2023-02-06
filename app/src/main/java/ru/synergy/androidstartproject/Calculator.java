@@ -40,18 +40,12 @@ public class Calculator extends AppCompatActivity {
 //        // Shared prefs доступ с использованием контекста приложения.
 //        SharedPreferences prefs = getApplicationContext().getSharedPreferences("PREFS",MODE_PRIVATE);
 //
-
         //////
-
         /////  intent - посылка
 
 
 
-
-
         //
-
-
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
