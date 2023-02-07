@@ -62,7 +62,7 @@ public class Calculator extends AppCompatActivity {
 
                     // Восстановление
                     e.printStackTrace();
-                    Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Calculator.this, e.getMessage() + "off class"+ e.getClass(), Toast.LENGTH_LONG).show();
                     dropFields();
 
                 }
@@ -155,12 +155,6 @@ public class Calculator extends AppCompatActivity {
 
         float solution = 0;
 
-        if (numtwo == 0) {
-            Toast.makeText(this, "Number two Cannot be zero", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
         if (add.isChecked()) {
             Log.d(LogcatTag, "Operation is add");
             solution = numone + numtwo;
@@ -192,7 +186,7 @@ public class Calculator extends AppCompatActivity {
 
         answer.setText("The answer is" + solution);
 
-        switch ((int) Math.random()*2) {
+        switch ((int) (Math.random() * 3) ) {
             case 0: throw  new ArithmeticException("I'm generated arithmetical exception");
             case 1: throw new IOException ("I'm generated ioexception exception");
 
