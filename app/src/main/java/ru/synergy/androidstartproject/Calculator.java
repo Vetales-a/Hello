@@ -52,7 +52,7 @@ public class Calculator extends AppCompatActivity {
                 Log.d(LogcatTag, "Button have been pushed");
                 calculateAnswer();
                 Intent i = new Intent(Calculator.this , MainActivity.class);/// Напсать письмо
-                startActivity(i);/// Отправить его
+//                startActivity(i);/// Отправить его
             }
         });
     }
@@ -96,28 +96,39 @@ public class Calculator extends AppCompatActivity {
         RadioButton multiple = (RadioButton) findViewById(R.id.multiple);
         RadioButton divide = (RadioButton) findViewById(R.id.divide);
 
-        numOne.setText("0");
-        numTwo.setText("0");
-        add.setChecked(true);
+//        numOne.setText("0");
+//        numTwo.setText("0");
+//        add.setChecked(true);
 
         TextView answer = (TextView) findViewById(R.id.result);
 
         Log.d(LogcatTag, "ALL view have been founded");
 
+//        try {
+//            int a = 25 / 0;
+//        } catch (ArithmeticException e){
+//            e.printStackTrace();
+//        }
+
         float numone = 0;
         float numtwo = 0;
         String num1 = numOne.getText().toString();
-        String num2 = numOne.getText().toString();
-        if (num1.contentEquals("") && num1 != null) {
+        String num2 = numTwo.getText().toString();
+        if (!num1.equals("") && num1 != null) {
             numone = Integer.parseInt(numOne.getText().toString());
         }
-        if (num1.contentEquals("") && num2!= null) {
+        if (!num2.equals("") && num2!= null) {
             numtwo = Integer.parseInt(numTwo.getText().toString());
         }
         Log.d(LogcatTag, "Successfully grabbed data from input fields");
         Log.d(LogcatTag, "numone is:" + numone + " ; " + " numtwo is:" + numtwo);
 
         float solution = 0;
+
+        if (numtwo == 0) {
+            Toast.makeText(this, "Number two Cannot be zero", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
         if (add.isChecked()) {
