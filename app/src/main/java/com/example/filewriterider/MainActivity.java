@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         FileOutputStream fos = null;
 
         try {
-            EditText textBox = (EditText) view.findViewById(R.id.editor);
+            EditText textBox = (EditText) findViewById(R.id.editor);
             String text = textBox.getText().toString();
 
 
@@ -46,20 +46,20 @@ public class MainActivity extends AppCompatActivity {
         } finally {
             try {
                 if (fos != null) {
-
                     fos.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+                    }
+                } catch (IOException e) {
+                throw new RuntimeException(e);
             }
+
         }
+
 
     }
     // ОТкрытие файла
     public void openText(View view){
         FileInputStream fin = null;
-        TextView textView = (TextView) view.findViewById(R.id.text);
+        TextView textView = (TextView) findViewById(R.id.text);
 
         try {
             fin = openFileInput(FILE_NAME);
