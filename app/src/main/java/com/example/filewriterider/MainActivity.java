@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    private File getExternalFilePath() {
+        return new File(getExternalFilesDir(null), FILE_NAME);
+    }
+
     // Слхранение файла
 
     public void saveText(View view) {
@@ -34,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             String text = textBox.getText().toString();
 
 
-            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+            fos = new FileOutputStream(getExternalFilePath()); //openFileOutput(FILE_NAME, MODE_PRIVATE);
             fos.write(text.getBytes());
             Toast.makeText(this, "Файл успешно созранен", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
@@ -47,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 if (fos != null) {
                     fos.close();
-                    }
-                } catch (IOException e) {
+                }
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
@@ -56,31 +62,32 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     // ОТкрытие файла
-    public void openText(View view){
+    public void openText(View view) {
         FileInputStream fin = null;
         TextView textView = (TextView) findViewById(R.id.text);
-
+        File file = getExternalFilePath();
         try {
-            fin = openFileInput(FILE_NAME);
+            fin = new FileInputStream(file);  //openFileInput(FILE_NAME);
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             String text = new String(bytes);
             textView.setText(text);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
-        }finally {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
             try {
-                if(fin != null){
+                if (fin != null) {
                     fin.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
 
