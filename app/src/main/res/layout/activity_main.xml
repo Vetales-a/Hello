@@ -23,14 +23,14 @@
     android:orientation="horizontal">
 
     <Button
-        android:id="@+id/BtnSave"
+        android:id="@+id/btnSave"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"/>
 
     <Button
-        android:id="@+id/BtnLoud"
+        android:id="@+id/btnLoud"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
